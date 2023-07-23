@@ -2,3 +2,20 @@
 
     cursor:grab;
 }
+.wrap{
+    word-wrap: break-word;
+}
+.subrow{
+
+    font-size: 0.65rem;
+}
+
+.box:hover,.box:focus-within{
+    background-color:hsla(216, 98%, 52%, 0.682) !important;
+}
+.rounded-top-right-1{
+    border-top-right-radius: 1rem;
+}
+.rounded-bottom-right-1{
+    border-bottom-right-radius: 1rem;
+}
