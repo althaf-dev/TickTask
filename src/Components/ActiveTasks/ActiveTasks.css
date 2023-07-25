@@ -11,7 +11,7 @@
 }
 
 .box:hover,.box:focus-within{
-    background-color:hsla(216, 98%, 52%, 0.682) !important;
+    background-color:hsla(223, 7%, 21%, 0.555) !important;
 }
 .rounded-top-right-1{
     border-top-right-radius: 1rem;

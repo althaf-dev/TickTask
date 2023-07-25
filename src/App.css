@@ -38,6 +38,15 @@
   
   
 }
+.taglist{
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 80px;
+
+
+
+}
 .box-shadow{
 
   box-shadow: 15px 10px 20px 10px #46df0a95;

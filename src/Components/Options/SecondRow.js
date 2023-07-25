@@ -12,7 +12,7 @@ function SecondRow(props) {
     <div className="row pb-1 m-0 fs-6 show">
       <hr />
       <div className="col-1">
-        <small>Due</small>
+        <small className="c">Due</small>
       </div>
       <div className="col-3">
         <DatePicker 

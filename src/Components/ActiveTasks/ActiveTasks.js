@@ -4,6 +4,7 @@ import TaskFirstRow from './TaskFirstRow';
 import { Appcontext } from '../../Appcontext';
 import ActiveTaskCount from './ActiveTaskCount'
 
+
 function allowDrop(ev) {
   ev.preventDefault();
 }
@@ -32,10 +33,12 @@ function ActiveTasks() {
     );
   }
   return (
-    <div className="col-4 bg-dark bg-gradient border border-2 border-light p-4 overflow-scroll scroll"
+    <div className="col-4 bg-dark bg-gradient border border-2 border-light p-4  scroll"
     onDrop={(ev) => drop(ev, "active")}
     onDragOver={(event) => allowDrop(event)}>
-      <ActiveTaskCount/>
+     
+      <ActiveTaskCount/> 
+
       {todos.map((tdo) => {return ((!tdo.status && !tdo.deleted) ?<TaskFirstRow props={{tdo:tdo,setTodos:setTodos}}/>:null);})}
       
     </div>

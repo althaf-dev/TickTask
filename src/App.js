@@ -7,18 +7,22 @@ import { Appcontext } from "./Appcontext";
 import Header from "./Components/Header/Header";
 
 
+
+
 function App() {
 
   const [todos, setTodos] = useState([]);
   const [todo, setTodo] = useState();
-  const [tag, setTag] = useState();
+  const [tag, setTag] = useState("");
   const [tags ,setTags] = useState([]);
+  const [showTagList,setShowTagList] = useState(false);
 
   return (
     <div className="App">
+
       <div className="container-fluid">
         
-        <Appcontext.Provider value={{todos: [...todos],setTodos: setTodos,todo: todo,setTodo: setTodo,tags:tags,setTags:setTags,tag:tag,setTag:setTag}}>
+        <Appcontext.Provider value={{todos: [...todos],setTodos: setTodos,todo: todo,setTodo: setTodo,tags:tags,setTags:setTags,tag:tag,setTag:setTag,showTagList,setShowTagList}}>
           <Header/>
           <div className="row">
             <FinishedTasks/>

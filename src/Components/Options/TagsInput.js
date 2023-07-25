@@ -1,30 +1,17 @@
 import React, { useContext } from "react";
 import { Appcontext } from "../../Appcontext";
+import randomColor from "randomcolor";
 
-function handleInput(e, props, todos, setTodos, tags, setTags, setTag) {
-
+function handleInput(e, props, todos, setTodos, tags, tag, setTags, setTag) {
   setTag(e.target.value);
-  if (tags.includes(e.target.value)) {
-    setTodos(
-      todos.map((td) => {
-        if (props.props.tdo.id === td.id) {
-          if (td.tags) {
-            if (!td.tags.includes(e.target.value)) {
-              td.tags.push(e.target.value);
-            }
-          } else {
-            td.tags = [e.target.value];
-          }
-        }
-        return td;
-      })
-    );
-    
-  } else if (e.target.value.includes(",")) {
+
+  if (e.target.value.includes(",")) {
     let tg = e.target.value.slice(0, e.target.value.length - 1);
-    console.log(tg);
-    setTags([...tags, e.target.value.slice(0, e.target.value.length - 1)]);
-    insertTag(setTodos, props, tg, todos);
+
+    let color = randomColor({format:"rgbArray", luminosity:"light" ,hue: 'red'});
+    console.log(color);
+    setTags([...tags, {tg:tg,color:color}]);
+    insertTag(setTodos, props, {tg:tg,color:color}, todos);
     e.target.value = null;
   }
 }
@@ -41,17 +28,19 @@ function insertTag(setTodos, props, tg, todos) {
       return td;
     })
   );
+  console.log(todos);
 }
 function TagsInput(props) {
-  const { todos, setTodos, tags, setTags, setTag } = useContext(Appcontext);
+  const { todos, setTodos, tags, tag, setTags, setTag } =
+    useContext(Appcontext);
   return (
     <input
       autocomplete="off"
       placeholder="Enter , after tag to create new tag"
       onChange={(e) =>
-        handleInput(e, props, todos, setTodos, tags, setTags, setTag)
+        handleInput(e, props, todos, setTodos, tags, tag, setTags, setTag)
       }
-    />
+     className="border-0 "/>
   );
 }
 
