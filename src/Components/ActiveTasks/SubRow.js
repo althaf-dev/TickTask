@@ -7,10 +7,10 @@ const {showTagList,setShowTagList} = useContext(Appcontext)
   return (
     <div className='row '>
         <div className="col-3">
-            <p>{props.props.tdo.DueDate?props.props.tdo.DueDate.toDateString():null}</p>
+            <p>{props.tdo.DueDate?props.tdo.DueDate.toDateString():null}</p>
         </div>
         <div className="col-3 word-wrap">
-          <p>{props.props.tdo.tags?props.props.tdo.tags.map((tag,i)=>{
+          <p>{props.tdo.tags?props.tdo.tags.map((tag,i)=>{
 
             let bg = "#"+(tag.color[0]).toString(16)+(tag.color[1]).toString(16)+(tag.color[2]).toString(16)+(40).toString(16);
             let fc = "#"+(tag.color[0]+5).toString(16)+(tag.color[1]+10).toString(16)+(tag.color[2]+10).toString(16);
@@ -19,10 +19,9 @@ const {showTagList,setShowTagList} = useContext(Appcontext)
             }
             else if (i===3 && !showTagList){
               return(<i onClick={()=>{
-                console.log("clicked");
                 setShowTagList(true);
                
-              }}><span className='border rounded-circle p-1 bg-secondary'>+{props.props.tdo.tags.length}</span></i>)
+              }}><span className='border rounded-circle p-1 bg-secondary'>+{props.tdo.tags.length}</span></i>)
             }
             else{
               return null;

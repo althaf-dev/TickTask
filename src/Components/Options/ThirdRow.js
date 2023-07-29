@@ -6,8 +6,8 @@ import Tags from "./Tags";
 function ThirdRow(props) {
   return (
     <div className="row pb-1 show">
-      <SetPriority props={{ tdo: props.props.tdo }} />
-      <Tags props={{ tdo: props.props.tdo }} />
+      <SetPriority tdo = { props.tdo } />
+      <Tags tdo = { props.tdo } />
       <div className="col-3">
         <small>Edit task</small>
       </div>

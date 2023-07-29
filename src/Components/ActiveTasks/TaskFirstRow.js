@@ -24,15 +24,16 @@ function TaskFirstRow(props) {
     >
        
       <div className="row pt-2">
-        <PriorityFlag props={{ tdo: props.props.tdo }} />
+        <PriorityFlag  tdo = {props.props.tdo}  />
         <div className="col-8 wrap"><p>{props.props.tdo.item}</p></div>
-        <TrashBox props={{ tdo: props.props.tdo }} />
+        <TrashBox tdo = {props.props.tdo}  />
       </div>
 
-      <SubRow props={{ tdo: props.props.tdo }}/>
-      {showTagList?<Taglist props={{ tdo: props.props.tdo }}/>:null}
-      <SecondRow props={{ tdo: props.props.tdo }} />
-      <ThirdRow props={{ tdo: props.props.tdo }} />
+      <SubRow tdo = {props.props.tdo} />
+      {showTagList?<Taglist tdo = {props.props.tdo} />:null}
+      <SecondRow tdo = {props.props.tdo}  />
+      <ThirdRow tdo = {props.props.tdo}  />
+
     </div>
   );
 }

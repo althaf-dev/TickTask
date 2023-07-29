@@ -32,14 +32,14 @@ function FinishedTasks() {
     );
   }
   return (
-    <div className="col-4 bg-dark bg-gradient border border-2 border-light p-4 m-0 "
+    <div  className="col-4 bg-dark bg-gradient border border-2 border-light p-4 m-0 "
     onDrop={(ev) => drop(ev, "finish")}
     onDragOver={(event) => allowDrop(event)} >
       <h5>FINISHED TASKS <span>{(todos.filter((tdo) => (tdo.status === true && tdo.deleted === false))).length}</span> </h5>
       {todos.map((tdo) => {
         if (tdo.status && !tdo.deleted) {
           return (
-            <div id={tdo.id} className=" container bg-success bg-gradient rounded-3 p-0 mt-1 " draggable="true"
+            <div id={tdo.id} key = {tdo.id} className=" container bg-success bg-gradient rounded-3 p-0 mt-1 " draggable="true"
               onDragStart={(ev) => drag(ev)}>
               <div className="row pt-3">
                 <div className="col-8">

@@ -22,7 +22,7 @@ function SecondRow(props) {
             
             setTodos(todos.filter((td) => {
              
-              if (td.id === props.props.tdo.id) {
+              if (td.id === props.tdo.id) {
                 td.DueDate = date;
 
               }
@@ -30,9 +30,9 @@ function SecondRow(props) {
             }))
       
             setDueDate(date);
-            console.log(todos);
+    
           }}
-          dateFormat="MMMM d, yyyy h:mm aa"
+          dateFormat="MMMM d, yyyy"
         />
       </div>
      

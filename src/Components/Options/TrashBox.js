@@ -10,8 +10,8 @@ function TrashBox(props) {
         onClick={() => {
           setTodos(
             todos.filter((td) => {
-              if (td.id === props.props.tdo.id) {
-                    td.deleted = true;
+              if (td.id === props.tdo.id) {
+                td.deleted = true;
               }
               return td;
             })

@@ -35,7 +35,7 @@ function TagsInput(props) {
     useContext(Appcontext);
   return (
     <input
-      autocomplete="off"
+      autoComplete="off"
       placeholder="Enter , after tag to create new tag"
       onChange={(e) =>
         handleInput(e, props, todos, setTodos, tags, tag, setTags, setTag)

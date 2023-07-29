@@ -6,8 +6,8 @@ function Taglist(props) {
 
   return (
     <div className=" border bg-dark bg-gradient rounded-2 mb-3 taglist wrap d-flex flex-wrap p-3">
-      {props.props.tdo.tags
-        ? props.props.tdo.tags.map((tag) => {
+      {props.tdo.tags
+        ? props.tdo.tags.map((tag) => {
             let bg =
               "#" +
               tag.color[0].toString(16) +
