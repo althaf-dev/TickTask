@@ -9,9 +9,12 @@
 
     font-size: 0.65rem;
 }
+.bg-active:hover{
+    background-color:black !important;
 
+}
 .box:hover,.box:focus-within{
-    background-color:hsla(223, 7%, 21%, 0.555) !important;
+    background-color:#333 !important;
 }
 .rounded-top-right-1{
     border-top-right-radius: 1rem;

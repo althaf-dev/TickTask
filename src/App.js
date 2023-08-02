@@ -5,10 +5,7 @@ import FinishedTasks from "./Components/FinishedTasks/FinishedTasks";
 import ActiveTasks from "./Components/ActiveTasks/ActiveTasks";
 import { Appcontext } from "./Appcontext";
 import Header from "./Components/Header/Header";
-
-
-
-
+import SideBar from "./Components/SideBar/SideBar";
 function App() {
 
   const API_URL = "http://localhost:3500/items";
@@ -17,12 +14,13 @@ function App() {
   const [tag, setTag] = useState("");
   const [tags, setTags] = useState([]);
   const [showTagList, setShowTagList] = useState(false);
+  const [fetchError, setFetchError] = useState(null);
+  const [isloading, setIsloading] = useState(true);
+  const [editMode,SetEditMode] = useState(false);
   const [Filter, setFilter] = useState([{
     priority: ['1', '2', '3', '0'],
     tags: 'all', due: 'all'
   }]);
-  const [fetchError, setFetchError] = useState(null);
-  const [isloading,setIsloading] =useState(true);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -37,7 +35,7 @@ function App() {
         setFetchError(null);
       } catch (error) {
         setFetchError(error.message)
-      } finally{
+      } finally {
         setIsloading(false);
       }
     }
@@ -66,18 +64,25 @@ function App() {
           showTagList,
           setShowTagList,
           Filter,
-          setFilter
+          setFilter,
+          editMode,
+          SetEditMode
 
         }}>
-          <Header error={fetchError} loading ={isloading} />
+          <Header error={fetchError} loading={isloading} />
 
           <div className="row">
-            <FinishedTasks />
+            <SideBar />
             <ActiveTasks />
+            <FinishedTasks />
             <DeletedTask />
           </div>
 
         </Appcontext.Provider>
+        <div className="row mt-5">
+          <div className="bg-header text-dark p-2 mt-5">Footer</div>
+        </div>
+
 
       </div>
     </div>

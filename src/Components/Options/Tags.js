@@ -2,9 +2,10 @@ import React from "react";
 import TagsInput from "./TagsInput";
 import TagSuggestion from "./TagSuggestion";
 import Taglist from "./Taglist";
+import { FaTags } from "react-icons/fa6";
 function Tags(props) {
   return (
-    <div className="col-3 tags drop-down" >
+    <div className="col-2 ms-2  tags drop-down " >
       <div className="dropdown">
         <button
           className="btn btn-secondary border-0 bg-transparent "
@@ -13,7 +14,7 @@ function Tags(props) {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          Tags
+          <FaTags className="edit-icon-hover"/>
         </button>
         
         <ul className="dropdown-menu p-2" aria-labelledby="dropdownMenuButton1">

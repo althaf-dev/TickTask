@@ -4,15 +4,15 @@ import apiRequest from "../../apiRequest";
 function TaskInput() {
   const {setTodo} = useContext(Appcontext);
   return (
-    <div className="col-3  me-5">
+    
       <input
         type=" text"
         placeholder="Your Task here"
         onChange={(e) => {
           setTodo(e.target.value);
-        }} className='p-3 rounded-3'
+        }} className='form-control mb-2'
       />
-    </div>
+   
   )
 }
 
@@ -27,7 +27,7 @@ async function post(data){
     },
     body:JSON.stringify(data)
   }
-  // console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data))
   const result = await apiRequest(API_URL,options);
   if (result) console.log(result);
 }
@@ -37,10 +37,10 @@ function TaskAdd() {
 
 
   return (
-    <div className="col-3 ms-4">
-      <button className="rounded-3">
-        <i
-          className="fa-solid fa-plus"
+
+      <button className="rounded-3 btn btn-primary form-control"
+        
+      
           onClick={() => {
    
             setTodos([
@@ -51,6 +51,7 @@ function TaskAdd() {
                 status: false,
                 deleted: false,
                 priority: "0",
+                edit:false,
                 tags: [],
               },
             ]);
@@ -64,22 +65,23 @@ function TaskAdd() {
             },);
           
           }}
-        ></i>
-      </button>
-    </div>
+        >
+      ADD</button>
+
   );
 }
 
 function TaskEntry() {
   return (
 
-    <div className="col-4 bg-dark bg-gradient  mt-3 mb-0  border border-2 rounded-2 p-2 ">
-      <div className="row mt-3 d-flex justify-content-center align-items-center">
-        <div className="col-3 "><p>Create Task</p></div>
-        <TaskInput  />
+
+      <div className="row  mt-2 p-2 d-flex flex-column justify-content-center align-items-center">
+        <div className="col-12 text-dark"><p>Add new Task</p></div>
+        <TaskInput />
         <TaskAdd />
+        <hr className="mt-3 text-dark"></hr>
       </div>
-    </div>
+
     );
 }
 

@@ -52,8 +52,7 @@
   box-shadow: 15px 10px 20px 10px #46df0a95;
 }
 body{
-  background-color:hsla(0, 0%, 20%, 0.356);
-    background-image: linear-gradient(#333,whitesmoke);
+  background-color:rgb(217, 225, 231);
 }
 @keyframes App-logo-spin {
   from {

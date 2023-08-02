@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Appcontext } from "../../Appcontext";
 import randomColor from "randomcolor";
+import patch from "../patch";
 
 function handleInput(e, props, todos, setTodos, tags, tag, setTags, setTag) {
   setTag(e.target.value);
@@ -24,6 +25,7 @@ function insertTag(setTodos, props, tg, todos) {
         } else {
           td.tags = [tg];
         }
+        patch(td,td.id);
       }
       return td;
     })

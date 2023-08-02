@@ -13,8 +13,8 @@ const Priority = [{ value: "1", label: "High" },
 { value: 'All', label: "All" }]
 const styles = {
 
-  control: (style) => ({ ...style, backgroundColor: "grey", borderColor: "white", width: "120px", color: "blue" }),
-  option: (style) => ({ ...style, backgroundColor: "#333", color: "red" })
+  control: (style) => ({ ...style, width: "100%", color: "blue" }),
+  option: (style) => ({ ...style, color: "red" })
 
 }
 
@@ -23,35 +23,36 @@ function FIlterBar() {
   const [Option, setOption] = useState();
   const [dueDate, setDueDate] = useState(new Date());
   const { Filter, setFilter, tags } = useContext(Appcontext);
+  const [FilterSelect, setFilterSelect] = useState(false);
 
   function handleChange(selectedOption) {
 
-      console.log(selectedOption.value);
-      setOption(selectedOption.value);
-      setFilter(Filter.map((el)=>{
+    console.log(selectedOption.value);
+    setOption(selectedOption.value);
+    setFilter(Filter.map((el) => {
 
-        el.tags = 'all';
-        el.priority = ["1", "2", "3", "0"];
-        el.due = 'all'
-        return el;
+      el.tags = 'all';
+      el.priority = ["1", "2", "3", "0"];
+      el.due = 'all'
+      return el;
 
-      }))
+    }))
 
   }
-    const tagsOption = tags.map((el)=>{return {'value':el.tg,'label':el.tg}});
+  const tagsOption = tags.map((el) => { return { 'value': el.tg, 'label': el.tg } });
 
 
   function handleOption(selectedOption) {
 
     console.log("handleoption")
 
-      setFilter(Filter.map((el) => {
+    setFilter(Filter.map((el) => {
 
       if (selectedOption.value !== 'All') {
 
-        el.priority = (Option === 'Priority')?[selectedOption.value]:["1", "2", "3", "0"];
-        el.tags   = (Option === 'Tag')?selectedOption.value:"all";
-        el.due   = (Option === 'Due')?selectedOption.toDateString():"all";
+        el.priority = (Option === 'Priority') ? [selectedOption.value] : ["1", "2", "3", "0"];
+        el.tags = (Option === 'Tag') ? selectedOption.value : "all";
+        el.due = (Option === 'Due') ? selectedOption.toDateString() : "all";
 
         console.log(selectedOption.value);
 
@@ -64,46 +65,55 @@ function FIlterBar() {
       return el;
     }));
 
-   
-    
-    
+
+
+
     console.log(Filter);
   }
   return (
-    <div>
-      <h4>Filters</h4>
-      <nav className="navbar navbar-expand">
-        <div className="container-fluid">
-
-          <ul className="navbar-nav me-2 mt-1 ">
-            <li className="nav-item me-3 mt-2 d-flex  align-items-center">Where</li>
-            <li className="nav-item me-3 mt-2"><Select  onChange={handleChange} options={Critiria} styles={styles} /></li>
-            <li className="nav-item me-4 mt-3">IS</li>
-            <li className="nav-item me-5 mt-2 ">
-              
-              {Option === 'Priority' && <Select  onChange={handleOption} options = {Priority} styles={styles}/> }
-              {Option === 'Tag' && <Select onChange={handleOption} options = {tagsOption} styles={styles}/> }
-              {Option === 'Due' &&  <DatePicker 
-          className="bg-dark bg-gradient border-1 border-light rounded-2 text-white p-2"
-          selected={dueDate}
-          todayButton="Vandaag"
-          onChange={(date) => {
-            
-            setDueDate(date);
-            console.log(dueDate);
-            handleOption(date);
-          }}
-          dateFormat="MMMM d, yyyy"
-        />}
+    <div className="container-fluid p-2">
 
 
-             </li>
+      <div className="row d-flex flex-column justify-content-center p-0">
+
+        {!FilterSelect && <button className="btn btn-outline-primary mb-3" onClick={() => setFilterSelect(true)}>FILTERS</button>}
+
+        
+        {FilterSelect && <p>WHERE</p>}
+
+        {FilterSelect && <div className="mb-3 m-0 p-0"><Select onChange={handleChange} options={Critiria} styles={styles} /></div>}
 
 
-          </ul>
+
+        {Option === 'Priority' && FilterSelect && <p>IS</p>}
+        {Option === 'Tag' && FilterSelect && <p>IS</p>}
+
+        <div className="p-0">
+          {Option === 'Priority' && FilterSelect && <Select onChange={handleOption} options={Priority} styles={styles} />}
+          {Option === 'Tag' && FilterSelect && <Select onChange={handleOption} options={tagsOption} styles={styles} />}
+
+          {Option === 'Due' && FilterSelect && <DatePicker
+            className="bg-dark bg-gradient border-1 border-light rounded-2 text-white p-2"
+            selected={dueDate}
+            todayButton="Vandaag"
+            onChange={(date) => {
+
+              setDueDate(date);
+              console.log(dueDate);
+              handleOption(date);
+            }}
+            dateFormat="MMMM d, yyyy"
+          />}
         </div>
-
-      </nav>
+          {FilterSelect && <button className="btn btn-outline-danger mb-3 mt-4" onClick={() => {
+            setFilterSelect(false);
+            handleChange('all');
+          }
+          }>CLOSE</button>}
+        
+      </div>
+      
+      <hr className="mt-3"></hr>
     </div>
   );
 }

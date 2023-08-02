@@ -3,6 +3,8 @@ import "./ActiveTasks.css";
 import TaskFirstRow from './TaskFirstRow';
 import { Appcontext } from '../../Appcontext';
 import ActiveTaskCount from './ActiveTaskCount'
+import patch from '../patch';
+
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -13,11 +15,11 @@ function Filter() {
   return (
     <>
       {todos.map((tdo) => {
-        let due = tdo.DueDate ? tdo.DueDate.toDateString() : null;
+        let due = tdo.DueDate ? new Date(tdo.DueDate).toDateString() : null;
         let FilterTags = (Filter[0].tags !== 'all') ? tdo.tags.filter((el) => el.tg === Filter[0].tags).length : true;
         let FilterDue = (Filter[0].due !== 'all') ? due === Filter[0].due : true;
         let filterPriority = Filter[0].priority.includes(tdo.priority);
-        let filter = filterPriority && FilterTags && FilterDue;
+        let filter = filterPriority && FilterTags && FilterDue ;
         return ((!tdo.status && !tdo.deleted && filter) ? <TaskFirstRow key={tdo.id} props={{ tdo: tdo, setTodos: setTodos }} /> : null);
       })}
     </>
@@ -41,6 +43,7 @@ function ActiveTasks() {
         } else if (td.id === Number(data) && categoryBox === "active") {
           td.status = false;
           td.deleted = false;
+          patch(td,td.id);
         }
         return td;
       })
@@ -49,7 +52,7 @@ function ActiveTasks() {
   }
 
   return (
-    <div className="col-4 bg-dark bg-gradient border border-2 border-light p-4  scroll"
+    <div className="col-3 ms-4  bg-dark bg-gradient bg-active border border-2 border-light p-3  scroll"
       onDrop={(ev) => drop(ev, "active")}
       onDragOver={(event) => allowDrop(event)}>   
       <ActiveTaskCount />

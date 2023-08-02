@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Appcontext } from '../../Appcontext';
+import patch from '../patch';
 function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
 
@@ -19,6 +20,7 @@ function FinishedTasks() {
         if (td.id === Number(data) && categoryBox === "finish") {
           td.status = true;
           td.deleted = false;
+          patch(td,td.id)
         } else if (td.id === Number(data) && categoryBox === "delete") {
           td.status = false;
           td.deleted = true;
@@ -32,7 +34,7 @@ function FinishedTasks() {
     );
   }
   return (
-    <div  className="col-4 bg-dark bg-gradient border border-2 border-light p-4 m-0 "
+    <div  className="col-3 ms-4 me-2 bg-dark bg-gradient bg-active border border-2 border-light p-4 m-0 "
     onDrop={(ev) => drop(ev, "finish")}
     onDragOver={(event) => allowDrop(event)} >
       <h5>FINISHED TASKS <span>{(todos.filter((tdo) => (tdo.status === true && tdo.deleted === false))).length}</span> </h5>

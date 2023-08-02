@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import DeletedTaskGreen from './DeletedTaskGreen';
 import DeletedTaskRed from './DeletedTaskRed';
 import { Appcontext } from '../../Appcontext';
-import apiRequest from '../../apiRequest';
+import patch from '../patch';
 
 function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
@@ -12,22 +12,22 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
-async function patch(data,id){
+// async function patch(data,id){
 
-  const API_URL = `http://localhost:3500/items/${id}`;
-  const options = {
+//   const API_URL = `http://localhost:3500/items/${id}`;
+//   const options = {
 
-    method:'PATCH',
-    headers:{
-      'Content-Type':'application/json'
-    },
-    body:JSON.stringify(data)
-  }
-  // console.log(JSON.stringify(data))
-  console.log('patching');
-  const result = await apiRequest(API_URL,options);
-  if (result) console.log(result);
-}
+//     method:'PATCH',
+//     headers:{
+//       'Content-Type':'application/json'
+//     },
+//     body:JSON.stringify(data)
+//   }
+//   // console.log(JSON.stringify(data))
+//   console.log('patching');
+//   const result = await apiRequest(API_URL,options);
+//   if (result) console.log(result);
+// }
 function DeletedTask() {
   const { todos,setTodos} = useContext(Appcontext);
   function drop(ev, categoryBox) {
@@ -56,7 +56,7 @@ function DeletedTask() {
 
   }
   return (
-    <div className="col-4 bg-dark bg-gradient border border-2 border-light p-4 m-0 rounded-3 "
+    <div className="col-3 ms-2 bg-dark bg-gradient bg-active border border-2 border-light p-4 m-0 rounded-3 "
     onDrop={(ev) => drop(ev, "delete")}
     onDragOver={(event) => allowDrop(event)}>
       <h5>DELETED TASKS <span>{(todos.filter((tdo) => (tdo.deleted === true) )).length}</span></h5>
