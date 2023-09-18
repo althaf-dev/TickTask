@@ -7,3 +7,13 @@
 .bg-header{
     background-color: steelblue;
 }
+input:focus{
+
+    box-shadow: none !important;
+}
+.search-input:hover{
+
+    transition: all 0.1s;
+  transform: scaleY(1.08)
+
+}

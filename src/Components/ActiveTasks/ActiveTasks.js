@@ -1,66 +1,29 @@
 import React, { useContext } from 'react'
 import "./ActiveTasks.css";
-import TaskFirstRow from './TaskFirstRow';
 import { Appcontext } from '../../Appcontext';
-import ActiveTaskCount from './ActiveTaskCount'
-import patch from '../patch';
+import { allowDrop } from '../../Utilities/dragAndDrop';
+import { ACTIVEBLOCKSTYLE } from '../styles';
 
-
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-
-function Filter() {
-  const { todos, setTodos, Filter } = useContext(Appcontext);
-  return (
-    <>
-      {todos.map((tdo) => {
-        let due = tdo.DueDate ? new Date(tdo.DueDate).toDateString() : null;
-        let FilterTags = (Filter[0].tags !== 'all') ? tdo.tags.filter((el) => el.tg === Filter[0].tags).length : true;
-        let FilterDue = (Filter[0].due !== 'all') ? due === Filter[0].due : true;
-        let filterPriority = Filter[0].priority.includes(tdo.priority);
-        let filter = filterPriority && FilterTags && FilterDue ;
-        return ((!tdo.status && !tdo.deleted && filter) ? <TaskFirstRow key={tdo.id} props={{ tdo: tdo, setTodos: setTodos }} /> : null);
-      })}
-    </>
-  )
-}
+import Tasks from "../TaskEntry/Tasks";
+import { ACTION, CATEGORY } from '../../Utilities/Data';
+import ActiveTaskCount from '../TaskCounts/ActiveTaskCount';
 
 function ActiveTasks() {
-
-  const { todos, setTodos } = useContext(Appcontext);
-  function drop(ev, categoryBox) {
-
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    setTodos(todos.filter((td) => {
-        if (td.id === Number(data) && categoryBox === "finish") {
-          td.status = true;
-          td.deleted = false;
-        } else if (td.id === Number(data) && categoryBox === "delete") {
-          td.status = false;
-          td.deleted = true;
-        } else if (td.id === Number(data) && categoryBox === "active") {
-          td.status = false;
-          td.deleted = false;
-          patch(td,td.id);
-        }
-        return td;
-      })
-    );
-
-  }
-
+  const { dispatchTodos} = useContext(Appcontext);
   return (
-    <div className="col-3 ms-4  bg-dark bg-gradient bg-active border border-2 border-light p-3  scroll"
-      onDrop={(ev) => drop(ev, "active")}
-      onDragOver={(event) => allowDrop(event)}>   
-      <ActiveTaskCount />
-      <Filter />
+    <div className={ACTIVEBLOCKSTYLE}
+      onDrop={ev => dispatchTodos({
+        type: ACTION.DRAG, payload: { ev, categoryBox: CATEGORY.ACTIVE }
+      })}
+      onDragOver={allowDrop}
+    >
+      <ActiveTaskCount/>
+ 
+         <Tasks categoryBox={CATEGORY.ACTIVE} />
+
+     
     </div>
   )
-  
 }
-
 
 export default ActiveTasks

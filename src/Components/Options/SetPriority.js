@@ -1,21 +1,14 @@
 import React, { useContext } from "react";
 import { Appcontext } from '../../Appcontext'
-import patch from "../patch";
+import { ACTION } from "../../Utilities/Data";
+
 function SetPriority(props) {
-  const { todos, setTodos } = useContext(Appcontext);
+  const { dispatchTodos } = useContext(Appcontext);
   return (
     <div className="col-3 mt-1">
-
-      <select className="form-select   border-0 text-dark mt-2 p-0 " onChange={(e) => {
-        setTodos(todos.map((todo) => {
-          if (props.tdo.id === todo.id) {
-            todo.priority = e.target.value;
-            patch(todo, todo.id);
-          }
-          return todo;  
-        }))
-
-      }} aria-label="Default select example" style={{ fontSize: "10px", width: "90px"}}>
+      <select className="form-select border-0 text-dark mt-2 p-0 "
+        onChange={e => dispatchTodos({ type: ACTION.SETPRIO, payload: { id: props.tdo.id, val: e.target.value } })
+        } aria-label="Default select example" style = {{ fontSize: "10px", width: "90px" }}>
         <option value="0">Set Priority </option>
         <option value="1" >High Priority </option>
         <option value="2">Med Priority </option>

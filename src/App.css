@@ -44,8 +44,6 @@
   overflow-x: hidden;
   max-height: 80px;
 
-
-
 }
 .box-shadow{
 
@@ -53,6 +51,7 @@
 }
 body{
   background-color:rgb(217, 225, 231);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 @keyframes App-logo-spin {
   from {

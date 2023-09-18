@@ -1,11 +1,11 @@
 import React ,{useContext,useEffect, useRef}from 'react'
 import { Appcontext } from '../../Appcontext';
-import patch from '../patch';
+import { ACTION } from '../../Utilities/Data';
+
 function TaskEdit(props) {
 
-  const {setTodos,todos,todo,setTodo} = useContext(Appcontext);
+  const {dispatchTodos,stateTodo,dispatchTodo} = useContext(Appcontext);
   const inputRef = useRef(null)
-
   useEffect(() => {
   
     if (inputRef.current ) {
@@ -13,28 +13,24 @@ function TaskEdit(props) {
       inputRef.current.select();
     }
   }, []);
+
+  useEffect(()=>{
+
+    dispatchTodo({type:"add",payload:props.tdo.item})
+  },[props.tdo.item,dispatchTodo])
   return (
     <div className='d-flex  flex-row justify-content-evenly align-items-center'>
        <input
         ref={inputRef}
         type=" text"
-        value={todo?todo:props.tdo.item}
+        value={stateTodo?stateTodo.todo:props.tdo.item}
         placeholder="Your Task here"
         onChange={(e) => {
-           setTodo(e.target.value);
+          dispatchTodo({type:"add",payload:e.target.value})
         }}
         className='form-control mb-2 mt-1'
-        onBlur={(e)=>{
-          setTodo(e.target.value);
-        setTodos(todos.map((el)=>{
-            if(props.tdo.id === el.id){
-              el.item = e.target.value;
-              el.edit = false;
-              patch(el,el.id);
-            }
-            return el;
-          }));
-       setTodo(null);
+        onBlur={e=>{
+          dispatchTodos({type:ACTION.EDIT,payload:{id:props.tdo.id,val:e.target.value}})
        }}
       />
     </div>

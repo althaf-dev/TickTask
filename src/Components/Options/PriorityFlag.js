@@ -13,5 +13,4 @@ function PriorityFlag(props) {
     </div>
   );
 }
-
 export default PriorityFlag;

@@ -35,9 +35,8 @@ small,.font{
 
     font-size: 0.8rem;
     font-weight:600;
-    letter-spacing: 0.1rem;
-    padding: 0.1rem;
-    padding-right: 0.4rem;
+    letter-spacing: 0.05rem;
+    padding-right: 0.1rem;
 }
 .edit-icon-hover:hover{
     color: goldenrod;

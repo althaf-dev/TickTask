@@ -1,0 +1,12 @@
+export const FINISHBLOCKSTYLE = "col-lg-3 col-12 ms-lg-4 ms-2 me-2  bg-active  p-4 pt-0 m-0 scroll";
+export const DELETEBLOCKSTYLE = "col-lg-3 col-12 ms-lg-2 ms-2 bg-active p-4 m-0 rounded-3 pt-0 scroll "
+export const FINISHTODOSTYLE  = "container bg-success bg-gradient rounded-3 p-0 mt-1 box";
+export const DELETETODOSTYLE  = "container bg-danger bg-gradient rounded-3 p-0 mt-1 text-white box";
+export const ACTIVEBLOCKSTYLE = "col-lg-3 col-12 ms-lg-4 ms-2  bg-active p-3 pt-0  scroll";
+export const ACTIVETODOSTYLE  = "container bg-primary bg-gradient  rounded-3 ps-2 pb-0 pe-1 mt-2 drag  box";
+export const HEADERTITLESTYLE = "col-4  d-flex justify-content-evenly align-items-center text-white pt-1";
+export const ERRORSTYLE  = 'text-white border border-danger bg-danger bg-gradient p-1 rounded-1 ';
+export const LOADINGSTYLE = 'bg-primary bg-gradient text-white mt-1 p-1 rounded-1';
+export const TASKENTRYSTYLE = "row  mt-2 p-2 d-flex flex-column justify-content-center align-items-center text-dark";
+export const FILTERBARSTYLE =  "row d-flex flex-column justify-content-center p-0";
+export const DATEPICKERSTYLE = "bg-dark bg-gradient border-1 border-light rounded-2 text-white p-2";

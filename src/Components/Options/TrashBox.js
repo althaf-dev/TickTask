@@ -1,25 +1,14 @@
 import React, { useContext } from "react";
 import { Appcontext } from "../../Appcontext";
+import { FaTrash } from "react-icons/fa6";
+import { ACTION } from "../../Utilities/Data";
 
 function TrashBox(props) {
-  const { todos, setTodos } = useContext(Appcontext);
+  const { dispatchTodos} = useContext(Appcontext);
   return (
     <div className="col-1 trash-box">
-      <i
-        className="fa-solid fa-trash"
-        onClick={() => {
-          setTodos(
-            todos.filter((td) => {
-              if (td.id === props.tdo.id) {
-                td.deleted = true;
-              }
-              return td;
-            })
-          );
-        }}
-      ></i>
+      <FaTrash onClick={()=>dispatchTodos({type:ACTION.TRASH,payload:props.tdo.id})}/>
     </div>
-  );
+    );
 }
-
 export default TrashBox;

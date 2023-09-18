@@ -1,35 +1,44 @@
 import React, { useContext } from 'react'
 import { Appcontext } from '../../Appcontext'
-
+import { FaUser } from 'react-icons/fa6'
+import "./ActiveTasks.css";
 function SubRow(props) {
-  const { showTagList, setShowTagList } = useContext(Appcontext)
-
   return (
-    <div className='row '>
-      <div className="col-4">
-        <strong><small>{props.tdo.DueDate ? new Date(props.tdo.DueDate).toDateString() : null}</small></strong>
-      </div>
-      <div className="col-4 word-wrap">
-        <p>{props.tdo.tags ? props.tdo.tags.map((tag, i) => {
+    <div className='container-fluid subrow'>
+      <div className='row  mb-2  d-flex justify-content-evenly align-items-center g-0 m-0 p-0'>
+        <div className="col-6  d-flex justify-content-start align-items-center ">
+          <i className='ms-1'>  {props.tdo.DueDate ? (props.tdo.DueDate) : null}</i>
+        </div>
+        <div className="col-5 ms-1  ">
+          {props.tdo.user && <i><FaUser className='mb-1' />  {props.tdo.user.value}</i>}
 
-          let bg = "#" + (tag.color[0]).toString(16) + (tag.color[1]).toString(16) + (tag.color[2]).toString(16) + (40).toString(16);
-          let fc = "#" + (tag.color[0] + 5).toString(16) + (tag.color[1] + 10).toString(16) + (tag.color[2] + 10).toString(16);
-          if (i < 3 && !showTagList) {
-            return (<i className='me-2  rounded-top-right-1 rounded-bottom-right-1  tagtext' style={{ backgroundColor: bg, color: fc, borderColor: bg }}>{tag.tg}</i>)
-          }
-          else if (i === 3 && !showTagList) {
-            return (<i onClick={() => {
-              setShowTagList(true);
-
-            }}><span className='border rounded-circle p-1 bg-secondary'>+{props.tdo.tags.length}</span></i>)
-          }
-          else {
-            return null;
-          }
-        }) : null}</p>
+        </div>
       </div>
+      <ShowTags tdo={props.tdo} />
     </div>
+
   )
 }
 
+function ShowTags(props) {
+  const { showTagList, setShowTagList } = useContext(Appcontext)
+  return (
+    <div className="row mt-1 d-flex align-items-center justify-content-start word-wrap">
+
+      <p>{props.tdo.tags ? props.tdo.tags.map((tag, i) => {
+        if (i < 3 && !showTagList) {
+          return (<small className='me-1 bg-info bg-gradient ms-1 tagtext  rounded-3 p-1'>#{tag.value}</small>)
+        }
+        else if (i === 3 && !showTagList) {
+          return (<i onClick={() => {
+            setShowTagList(true);
+          }}><span className='border rounded-circle p-1 bg-secondary'>+{props.tdo.tags.length - 3}</span></i>)
+        }
+        else {
+          return null;
+        }
+      }) : null}</p>
+    </div>
+  )
+}
 export default SubRow

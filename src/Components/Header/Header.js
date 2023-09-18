@@ -1,35 +1,56 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./Header.css";
 import FIlterBar from '../Filter/FIlterBar'
-function Title(props){
-  
+import { HEADERTITLESTYLE, ERRORSTYLE, LOADINGSTYLE } from '../styles';
+import { FaTriangleExclamation } from 'react-icons/fa6'
+import { getDays } from '../../Utilities/Days';
+import Search from './Search/Search';
+import { Appcontext } from '../../Appcontext';
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
-  return(
-
-    <div className="col-4  d-flex justify-content-evenly align-items-center text-white pt-1">
-        <h5>TO DO APP</h5>
-        <p>hey! Today is {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date().getDay()]}</p>
-        {props.loading && <p className='bg-primary bg-gradient text-white mt-1 p-1 rounded-1'>Loading Items....</p>}
-        {props.error && <p className='text-white border border-danger bg-danger bg-gradient p-1 rounded-1 '><i class="fa-solid fa-triangle-exclamation ms-2 me-4"></i>{props.error}</p>}
+function Title(props) {
+  const { fetchError, isloading } = useContext(Appcontext);
+  return (
+    <div className={HEADERTITLESTYLE}>
+      <h5>TO DO APP</h5>
+      <p>hey! Today is {getDays}</p>
+      {isloading && <p className={LOADINGSTYLE}>Loading Items....</p>}
+      {fetchError && <p className={ERRORSTYLE}>
+        <FaTriangleExclamation />{fetchError}</p>}
     </div>
   )
 }
 export function Filter() {
   return (
     <div className="text-dark mt-1 mb-0 ">
-    <FIlterBar/>
+      <FIlterBar />
     </div>
   )
 }
 function Header(props) {
-
+  const { userName,setIsloading } = useContext(Appcontext);
+  const navigate = useNavigate();
   return (
+    <div className="row bg-header mb-1 ">
+      <Title />
+      <Search />
+      <div className="col-4 mt-1">
+        <div className='ms-5 d-flex'>
+          <p className='mt-3 ms-5'>{userName}</p>
+          <p className='btn btn-secondary mt-2 ms-3'
+            onClick={() => {
+              const auth = getAuth();
+              signOut(auth).then(() => {
+                navigate("/");
+                setIsloading(true);
+              }).catch((error) => {
+                console.log(error.message)
+              });
+            }}>LOGOUT</p>
+        </div>
 
-    <div className="row bg-header ">
-
-      <Title  error ={props.error} loading ={props.loading}/>
-      
-
+      </div>
     </div>
   )
 }

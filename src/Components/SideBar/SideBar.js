@@ -4,7 +4,7 @@ import { Filter } from '../Header/Header'
 
 function SideBar() {
   return (
-    <div className='col-2 ms-2 bg-white '>
+    <div className='col-lg-2 col-12 ms-2 bg-white '>
       MENU
       <TaskEntry/>
       <Filter/>
