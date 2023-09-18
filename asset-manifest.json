@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/tickTask/static/css/main.96124935.css",
-    "main.js": "/tickTask/static/js/main.80331737.js",
-    "static/js/787.97a945da.chunk.js": "/tickTask/static/js/787.97a945da.chunk.js",
-    "index.html": "/tickTask/index.html",
-    "main.96124935.css.map": "/tickTask/static/css/main.96124935.css.map",
-    "main.80331737.js.map": "/tickTask/static/js/main.80331737.js.map",
-    "787.97a945da.chunk.js.map": "/tickTask/static/js/787.97a945da.chunk.js.map"
+    "main.css": "/TickTask/static/css/main.96124935.css",
+    "main.js": "/TickTask/static/js/main.87f2a16b.js",
+    "static/js/787.97a945da.chunk.js": "/TickTask/static/js/787.97a945da.chunk.js",
+    "index.html": "/TickTask/index.html",
+    "main.96124935.css.map": "/TickTask/static/css/main.96124935.css.map",
+    "main.87f2a16b.js.map": "/TickTask/static/js/main.87f2a16b.js.map",
+    "787.97a945da.chunk.js.map": "/TickTask/static/js/787.97a945da.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.96124935.css",
-    "static/js/main.80331737.js"
+    "static/js/main.87f2a16b.js"
   ]
 }
