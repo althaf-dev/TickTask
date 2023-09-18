@@ -42,7 +42,7 @@ function Header(props) {
             onClick={() => {
               const auth = getAuth();
               signOut(auth).then(() => {
-                navigate("/TickTask");
+                navigate("/TickTask/");
                 setIsloading(true);
               }).catch((error) => {
                 console.log(error.message)
