@@ -15,10 +15,10 @@ function App() {
         <DataProvider>
         <Routes>
         <Route  path="TickTask/*" element = {<Home/>} /> 
-        <Route  path="TickTask/todo" element={<TodoApp/>} />
-        <Route  path ="TickTask/login" element={<Login/>} />
-        <Route  path ="TickTask/signup" element={<Signup/>} />
-        <Route  path ="TickTask/usercreated" element={<UserCreated/>} />
+        <Route  path="todo" element={<TodoApp/>} />
+        <Route  path ="login" element={<Login/>} />
+        <Route  path ="signup" element={<Signup/>} />
+        <Route  path ="usercreated" element={<UserCreated/>} />
       </Routes> 
       </DataProvider>
       </Router>
