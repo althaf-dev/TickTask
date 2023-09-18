@@ -14,11 +14,11 @@ function App() {
       <Router>
         <DataProvider>
         <Routes>
-        <Route exact path="/" element = {<Home/>} /> 
-        <Route exact path="/todo" element={<TodoApp/>} />
-        <Route exact path ="/login" element={<Login/>} />
-        <Route exact path ="/signup" element={<Signup/>} />
-        <Route exact path ="/usercreated" element={<UserCreated/>} />
+        <Route exact path="tickTask/*" element = {<Home/>} /> 
+        <Route exact path="tickTask/todo" element={<TodoApp/>} />
+        <Route exact path ="tickTask/login" element={<Login/>} />
+        <Route exact path ="tickTask/signup" element={<Signup/>} />
+        <Route exact path ="tickTask/usercreated" element={<UserCreated/>} />
       </Routes> 
       </DataProvider>
       </Router>
