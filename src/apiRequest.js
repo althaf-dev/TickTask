@@ -30,8 +30,8 @@ export const post = async (data,user) => {
 }
 
 export const patch = async (data, id) => {
-  console.log(data);
+
   const Id = ''+id;
-  await setDoc(doc(db,"althafangadimoger@gmail.com",Id),data);
+  await setDoc(doc(db,data.user,Id),data);
 }
 export default apiRequest;

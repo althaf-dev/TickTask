@@ -14,6 +14,7 @@ export const DataProvider = ({ children }) => {
     const [stateTags, dispatchTags] = useReducer(reducerTags, [])
     const [stateFilter, dispatchFilter] = useReducer(reducerFilter, filter)
     const [user, dispatchUser] = useReducer(reduceUser, [])
+    const [taskAddedMessage,setTaskAddedMessage] = useState(false);
 
     const [tag, setTag] = useState("");
     const [userName,setUname] =  useState(' ');
@@ -61,7 +62,9 @@ export const DataProvider = ({ children }) => {
             isloading,
             fetchError,
             userName,
-            setUname
+            setUname,
+            taskAddedMessage,
+            setTaskAddedMessage
           }}>
           {children} 
         </Appcontext.Provider>

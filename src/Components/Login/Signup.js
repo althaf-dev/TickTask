@@ -8,7 +8,6 @@ function Signup() {
 
     return (
         <div className='container-fluid text-dark'>
-            <pre>{JSON.stringify(formvalues)}</pre>
             <div className="row mt-5"></div>
             <div className="row mt-3">
                 <form  >

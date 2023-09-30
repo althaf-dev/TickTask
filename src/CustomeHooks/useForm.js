@@ -35,6 +35,7 @@ export default function useForm(initialFormValue) {
             navigate("/todo");
         }).catch((error)=>{
             console.log(error.message);
+            alert(error.message.slice(9,));
         })
     }
 

@@ -1,23 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext,useState } from "react";
 import { Appcontext } from "../../Appcontext";
 import { TASKENTRYSTYLE } from "../styles";
 import { ACTION } from "../../Utilities/Data";
 import { post } from "../../apiRequest";
 
 function TaskInput() {
-  const { dispatchTodo } = useContext(Appcontext);
+  const { stateTodo,dispatchTodo,setTaskAddedMessage } = useContext(Appcontext);
   return (
     <input
+      value={stateTodo.todo}
       type="text"
       placeholder="Your Task here"
       onChange={e => dispatchTodo({ type: 'add', payload: e.target.value })}
+      onFocus={()=>setTaskAddedMessage(false)}
       className='form-control mb-2'
     />
   )
 }
 function TaskAdd() {
 
-  const { stateTodo, dispatchTodos,fetchError,userName} = useContext(Appcontext);
+  const { stateTodo, dispatchTodos,fetchError,userName,dispatchTodo,
+    taskAddedMessage,setTaskAddedMessage} = useContext(Appcontext);
+  const [taskEmptyError,setTaskEmptyError] = useState(false);
+  
+
     const todoData = {
     id: Date.now(),
     item: stateTodo.todo,
@@ -26,19 +32,35 @@ function TaskAdd() {
     priority: "0",
     edit: false,
     tags: [],
+    user:userName,
     serverUpdateRequired :false
   }
   if(fetchError!==null){
     todoData.serverUpdateRequired = true;
   }
   return (
-    <button className="rounded-3 btn btn-primary form-control"
+    <div className="p-0 m-0">
+      {taskEmptyError &&  <Error/>}
+      {taskAddedMessage && <SuccessMessage/>}
+       
+      <button className="rounded-3 btn btn-primary form-control"
       onClick={() =>{
-        dispatchTodos({type: ACTION.ADD, payload:{Data:todoData,user:userName} });
-        post(todoData,userName);
+        if(todoData.item.length>0){
+           dispatchTodos({type: ACTION.ADD, payload:{Data:todoData,user:userName} });
+           post(todoData,userName);
+           setTaskEmptyError(false);
+           setTaskAddedMessage(true);
+           dispatchTodo({ type: 'add', payload: '' })
+        }
+        else{
+          setTaskEmptyError(true);
+        }     
       }
       }
     >ADD</button>
+
+    </div>
+    
   )
 }
 
@@ -47,12 +69,22 @@ function TaskEntry() {
     <div className={TASKENTRYSTYLE}>
       <div className="col-12 "><p>Add new Task</p></div>
       <TaskInput />
+      
       <TaskAdd />
       <hr className="mt-3 text-dark"></hr>
     </div>
   );
 }
 
+function Error(){
+
+  return(<p className="text-danger ">Task can not be empty !</p>)
+}
+
+function SuccessMessage(){
+
+  return(<p className="text-success ">Task added successfully !</p>)
+}
 export default TaskEntry;
 
 
