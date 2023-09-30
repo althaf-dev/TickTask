@@ -1,4 +1,4 @@
-TODO APP 
+# TODO APP 
 
 This is a sample application that demonstrates a Todo web application that uses React in front and firebase as its backend.
 The Application allows user to login and loads todo list from the Firebase firestore. User can add new task ,Add a due date to existing task ,
@@ -6,7 +6,7 @@ Drag to Finsihed boxes and add tags ,user also.
 
 Live Demonstration
 
-The TODO APP can be viewed online here:
+The TODO APP can be viewed online here:https://althaf-dev.github.io/TickTask/
 
 ![image](https://github.com/althaf-dev/TickTask/assets/123298397/7e43d3dc-8bfc-4237-99ea-fe22bcbfe0f1)
 
@@ -16,6 +16,11 @@ The TODO APP can be viewed online here:
 
 ![image](https://github.com/althaf-dev/TickTask/assets/123298397/b3ae66ba-f0bd-4377-bb9d-eb3d956256b2)
 
+
+# System Design:
+
+
+![image](https://github.com/althaf-dev/TickTask/assets/123298397/4fa25d70-0ad0-41af-8f12-9090ecbd9885)
 
 
 
