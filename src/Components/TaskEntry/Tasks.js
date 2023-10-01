@@ -33,7 +33,7 @@ function tasksWraper(tdo, cat, SetTagAdd, SetEditMode) {
                 tabIndex={0}
                 draggable="true"
                 onDragStart={drag}
-            >   <TaskComponents tdo={tdo} />
+            >   <TaskComponents tdo={tdo} cat={cat} />
                 <SubRow tdo={tdo} />
                 {/* <EditRow tdo ={tdo}/> */}
                 {(cat === CATEGORY.ACTIVE) && <EditRow tdo={tdo} />}
@@ -50,7 +50,7 @@ function TaskComponents(props) {
                 {!props.tdo.edit && <p>{props.tdo.item}</p>}
                 {props.tdo.edit && <TaskEdit tdo={props.tdo} />}
             </div>
-            <TrashBox tdo={props.tdo} />
+            <TrashBox tdo={props.tdo} cat={props.cat} />
         </div>
     )
 }

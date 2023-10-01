@@ -10,7 +10,7 @@ function SubRow(props) {
           <i className='ms-1'>  {props.tdo.DueDate ? (props.tdo.DueDate) : null}</i>
         </div>
         <div className="col-5 ms-1  ">
-          {props.tdo.user && <i><FaUser className='mb-1' />  {props.tdo.user.value}</i>}
+          {props.tdo.assignee && <i><FaUser className='mb-1' />  {props.tdo.assignee.value}</i>}
 
         </div>
       </div>

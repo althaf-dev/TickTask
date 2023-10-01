@@ -33,6 +33,7 @@ function TaskAdd() {
     edit: false,
     tags: [],
     user:userName,
+    assignee:' ',
     serverUpdateRequired :false
   }
   if(fetchError!==null){

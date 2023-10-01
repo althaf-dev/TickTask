@@ -7,7 +7,7 @@ function TrashBox(props) {
   const { dispatchTodos} = useContext(Appcontext);
   return (
     <div className="col-1 trash-box">
-      <FaTrash onClick={()=>dispatchTodos({type:ACTION.TRASH,payload:props.tdo.id})}/>
+      <FaTrash onClick={()=>dispatchTodos({type:ACTION.TRASH,payload:{id:props.tdo.id,cat:props.cat}})}/>
     </div>
     );
 }

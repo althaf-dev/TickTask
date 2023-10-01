@@ -1,5 +1,5 @@
 import { db } from "./firebase/config";
-import { collection, addDoc,setDoc,doc } from "firebase/firestore";
+import { collection, addDoc,setDoc,doc,deleteDoc } from "firebase/firestore";
 const apiRequest = async (url = ' ', options = null, errorMessage = null) => {
 
   try {
@@ -33,5 +33,12 @@ export const patch = async (data, id) => {
 
   const Id = ''+id;
   await setDoc(doc(db,data.user,Id),data);
+}
+
+export const permenantDelete = async (data,id)=>{
+
+  const Id = ''+id;
+  await deleteDoc(doc(db,data.user,Id));
+  
 }
 export default apiRequest;

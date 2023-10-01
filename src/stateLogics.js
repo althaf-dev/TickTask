@@ -1,5 +1,5 @@
 import { ACTION, CATEGORY, FILTER, Todo_URL, filter } from "./Utilities/Data";
-import { patch, post } from "./apiRequest";
+import { patch, permenantDelete, post } from "./apiRequest";
 
 export function reducerTodo(state, action) {
   switch (action.type) {
@@ -60,7 +60,8 @@ const handleAddAssignee = (state, payload) => {
   let user = payload.val;
   return (state.map(el => {
     if (payload.id === el.id) {
-      el.user = user;
+      el.assignee = user;
+      console.log(el);
       patch(el, el.id);
     }
     return el;
@@ -88,13 +89,29 @@ const handleFinTasks = (state, payload) => {
   }))
 }
 
-const handleTrash = (state, currentId) => {
+const handleTrash = (state, payload) => {
+  let currentId = payload.id;
+  let cat = payload.cat;
   return state.filter(el => {
-    if (el.id === currentId) {
+    if (el.id === currentId && cat !== CATEGORY.DELETE) {
       el.deleted = true;
       patch(el, el.id);
+      return el;
     }
-    return el;
+    else if (el.id === currentId && cat === CATEGORY.DELETE) {
+      let confirmation = window.confirm("Do You Want To Permenantly Delete The Task");
+
+      if (confirmation === true) {
+        permenantDelete(el, el.id);
+        return null;
+      }
+      else {
+        return el;
+      }
+    }
+    else {
+      return el;
+    }
   })
 }
 
